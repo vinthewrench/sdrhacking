@@ -7,30 +7,30 @@
 using namespace std;
 
 
-/** Fast approximation of atan function. */
-static inline Sample fast_atan(Sample x)
-{
-	 // http://stackoverflow.com/questions/7378187/approximating-inverse-trigonometric-funcions
-
-	 Sample y = 1;
-	 Sample p = 0;
-
-	 if (x < 0) {
-		  x = -x;
-		  y = -1;
-	 }
-
-	 if (x > 1) {
-		  p = y;
-		  y = -y;
-		  x = 1 / x;
-	 }
-
-	 const Sample b = 0.596227;
-	 y *= (b*x + x*x) / (1 + 2*b*x + x*x);
-
-	 return (y + p) * Sample(M_PI_2);
-}
+///** Fast approximation of atan function. */
+//static inline Sample fast_atan(Sample x)
+//{
+//	 // http://stackoverflow.com/questions/7378187/approximating-inverse-trigonometric-funcions
+//
+//	 Sample y = 1;
+//	 Sample p = 0;
+//
+//	 if (x < 0) {
+//		  x = -x;
+//		  y = -1;
+//	 }
+//
+//	 if (x > 1) {
+//		  p = y;
+//		  y = -y;
+//		  x = 1 / x;
+//	 }
+//
+//	 const Sample b = 0.596227;
+//	 y *= (b*x + x*x) / (1 + 2*b*x + x*x);
+//
+//	 return (y + p) * Sample(M_PI_2);
+//}
 
 
 /** Compute RMS level over a small prefix of the specified sample vector. */

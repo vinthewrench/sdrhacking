@@ -1,16 +1,13 @@
+# CMake definitions for rtl
 SET (CMAKE_C_COMPILER             "clang")
 SET (CMAKE_CXX_COMPILER            "clang++")
 
-
-cmake_minimum_required(VERSION 3.0)
-
+cmake_minimum_required(VERSION 2.4)
 project(rtl)
-
 
 find_package(Threads)
 find_package(PkgConfig)
 find_package(ALSA REQUIRED)
-
 
 # Find RTL-SDR library (for linking).
 pkg_check_modules(PKG_RTLSDR librtlsdr)
@@ -39,56 +36,26 @@ endif()
 set(RTLSDR_INCLUDE_DIRS ${RTLSDR_INCLUDE_DIR} ${LIBUSB_INCLUDE_DIR})
 set(RTLSDR_LIBRARIES    ${RTLSDR_LIBRARY} ${LIBUSB_LIBRARY})
 
-set(SOURCES
-	src/main.cpp
+# Compiler flags.
+set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O2 -ffast-math -ftree-vectorize ${EXTRA_FLAGS}")
+
+add_executable(rtl
+    src/main.cpp
 	src/ErrorMgr.cpp
 	src/RtlSdr.cpp
 	src/AudioOutput.cpp
 	src/FmDecode.cpp
- 	src/Filter.cpp
- 	)
-
-add_executable(rtl ${SOURCES})
- 
- set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O2 -ffast-math -ftree-vectorize ${EXTRA_FLAGS}")
-
-set_target_properties(rtl PROPERTIES
-				CXX_STANDARD 17
-				CXX_EXTENSIONS OFF
-				)
- 
-set_target_properties(rtl PROPERTIES
-			OUTPUT_NAME "rtl"
-			)
-
-			  
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
+ 	src/Filter.cpp )
 
 include_directories(
     ${RTLSDR_INCLUDE_DIRS}
     ${ALSA_INCLUDE_DIRS}
     ${EXTRA_INCLUDES} )
 
-link_directories(
-	${RTLSDR_INCLUDE_DIRS}
-    ${ALSA_INCLUDE_DIRS}
-    ${EXTRA_INCLUDES}
-    )
-    
 target_link_libraries(rtl
-	 ${CMAKE_THREAD_LIBS_INIT}
+    ${CMAKE_THREAD_LIBS_INIT}
     ${RTLSDR_LIBRARIES}
     ${ALSA_LIBRARIES}
-    ${EXTRA_LIBS}
-    )
+    ${EXTRA_LIBS} )
 
-target_include_directories(rtl
-	PRIVATE
-	src
-)
-
-
-set(CMAKE_BINARY_DIR "bin")
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-
+install(TARGETS rtl DESTINATION bin)

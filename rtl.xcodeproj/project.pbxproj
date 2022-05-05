@@ -73,8 +73,9 @@
 		2E62A8E1280F80C400F5066B /* rtl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rtl.entitlements; sourceTree = "<group>"; };
 		2E62A8E2280F80F100F5066B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		2E62A8E4280F80FC00F5066B /* FmDecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FmDecode.cpp; path = src/FmDecode.cpp; sourceTree = SOURCE_ROOT; };
-		2E62A8E7280F820800F5066B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		2E62A8E7280F820800F5066B /* CMakeLists.saved */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.saved; sourceTree = "<group>"; };
 		2E62A8F32824327A00F5066B /* build notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "build notes.txt"; sourceTree = "<group>"; };
+		2E62A8F428243B5F00F5066B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +183,8 @@
 		2E62A8E6280F81E900F5066B /* Build Stuff */ = {
 			isa = PBXGroup;
 			children = (
-				2E62A8E7280F820800F5066B /* CMakeLists.txt */,
+				2E62A8E7280F820800F5066B /* CMakeLists.saved */,
+				2E62A8F428243B5F00F5066B /* CMakeLists.txt */,
 				2E62A8F32824327A00F5066B /* build notes.txt */,
 			);
 			name = "Build Stuff";
@@ -385,7 +387,7 @@
 					/usr/local/lib/,
 					"/usr/local/Cellar/libusb-compat/0.1.5_1/lib",
 					/usr/local/Cellar/libusb/1.0.26/lib,
-					"$(PROJECT_DIR)/rtl/macincludes",
+					"$(PROJECT_DIR)/macstuff/macincludes",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -409,7 +411,7 @@
 					/usr/local/lib/,
 					"/usr/local/Cellar/libusb-compat/0.1.5_1/lib",
 					/usr/local/Cellar/libusb/1.0.26/lib,
-					"$(PROJECT_DIR)/rtl/macincludes",
+					"$(PROJECT_DIR)/macstuff/macincludes",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
