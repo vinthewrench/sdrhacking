@@ -1,0 +1,27 @@
+# need libUSB
+sudo apt-get install libusb-1.0-0-dev
+
+
+
+# black list the devices
+cat <<EOF >no-rtl.conf
+blacklist dvb_usb_rtl28xxu
+blacklist rtl2832
+blacklist rtl2830
+EOF
+sudo mv no-rtl.conf /etc/modprobe.d/
+
+
+#clone, build and install libsdr
+git clone git://git.osmocom.org/rtl-sdr.git
+cd rtl-sdr/
+mkdir build
+cd build
+make
+sudo make install
+sudo ldconfig
+cd ~
+sudo cp ./rtl-sdr/rtl-sdr.rules /etc/udev/rules.d/
+sudo reboot
+
+
